@@ -1,0 +1,39 @@
+﻿@model ExoBillboard.Models.Photo
+@{
+    ViewBag.Title = "ExoBillboard";
+}
+<div class="row">
+    <div class="col-lg-8">
+        <img class="logo" src="~/Content/images/mchugh-logo.png" />
+    </div>
+    <div class="col-lg-4">
+        <div id="clock" class="clock"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="photo-gallery">
+            <div class="photo" id="initial-photo" style="background-image: url(@Model.FilePath)">
+                <div class="slider-caption">
+                    <h1>@Model.Title</h1>
+                    <p>@Model.Caption</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                loadSlider()
+            });
+        </script>
+    </div>
+    <div class="col-lg-4">
+        <div class="calendar">
+            <h1>@DateTime.Now.ToString("MMMM")</h1>
+            <p class="dayofweek">@DateTime.Now.DayOfWeek</p>
+            <p class="day">@DateTime.Now.Day</p>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div id="weather"></div>
+    </div>
+</div>

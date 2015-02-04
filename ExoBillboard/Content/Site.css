@@ -1,0 +1,144 @@
+﻿body {
+    background-image: url('images/wallpaper-wood-background.jpg');
+    background-size: cover;
+}
+
+.body-content {
+    margin: 50px 35px 50px 35px;
+}
+
+.slider-custom {
+    -moz-box-shadow: 0 0 100px 25px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 100px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 100px 25px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    margin-bottom: 50px;
+}
+
+.calendar {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 0 auto 60px;
+    width: 425px;
+}
+
+.calendar h1 {
+    font-family: 'josefin slab';
+    font-weight: 600;
+    font-size: 60px;
+    text-align: center;
+}
+
+.calendar .day {
+    font-family: 'Open Sans';
+    font-size: 180px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 200px;
+}
+
+.calendar .dayofweek {
+    font-family: 'Open Sans';
+    font-size: 36px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.slider-caption {
+    position: absolute;
+    bottom: 25px;
+    z-index: 1000;
+    padding: 15px;
+    max-width: 66%;
+    background-color: rgba(0, 0, 0, 0.66);
+    opacity: inherit;
+    -moz-border-radius: 0 5px 5px 0;
+    -webkit-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.slider-caption h1 {
+    margin: 0 0 10px 0;
+    font-family: 'josefin slab';
+    font-weight: 600;
+    color: #fff;
+}
+
+.slider-caption p {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    text-align: justify;
+    margin: 0;
+}
+
+#weather {
+    width: 425px;
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#weather h2 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 150px;
+    font-weight: 300;
+    text-align: center;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Josefin Slab', serif;
+}
+
+#weather ul {
+    margin: 0;
+    padding: 0;
+}
+
+#weather li {
+    background: rgba(255,255,255,0.90);
+    padding: 20px;
+    display: inline-block;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Open Sans';
+    font-size: 16px;
+}
+
+#weather .currently {
+    margin: 0 20px;
+}
+
+.clock {
+    text-align: center;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+.photo-gallery {
+    width: 100%;
+    position: relative;
+    height: 768px;
+    -moz-box-shadow: 0 0 100px 25px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0 0 100px 25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 100px 25px rgba(0, 0, 0, 0.75);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.photo {
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    -moz-border-radius: inherit;
+    -webkit-border-radius: inherit;
+    border-radius: inherit;
+}

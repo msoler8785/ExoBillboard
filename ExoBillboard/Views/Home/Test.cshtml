@@ -1,0 +1,24 @@
+﻿@model ExoBillboard.Models.Photo
+<div class="row">
+    <div class="col-lg-8">
+        <div class="photo-gallery"></div>      
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var photo = "";
+        var url = "/Home/Json/";
+        var id = 0;
+        var interval = setInterval(function () {
+            $.getJSON(url + id, function (json) {
+                photo = $('<div class="photo" id="' + id + '"><div class="slider-caption"><h1>' + json.Title + '</h1><p>' + json.Caption + '</p></div></div>')
+                    .css("background-image", "url(" + json.FilePath + ")").hide().fadeIn(2000);
+                $(".photo-gallery").append(photo);
+                id = json.Index;
+            });
+            $(".photo-gallery").find("div:first").css("z-index","-1").delay(2000).fadeOut(2000, function () {
+                $(this).remove();
+            });
+        }, 10000)
+    });
+</script>
