@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.Hosting;
+using System.Web;
 
 namespace ExoBillboard.Models
 {
@@ -24,33 +25,49 @@ namespace ExoBillboard.Models
     {
         public List<Photo> Photos { get; set; }
         public int ReloadInterval { get; set; }
-
+        private string[] ValidExtensions = { ".png", ".jpg" };
+        private const string PhotoRoot = "/Content/photos/";
 
         public PhotoCollection()
         {
-            string folderPath = HostingEnvironment.MapPath("~/Content/");
-            string[] photos = Directory.GetFiles(Path.Combine(folderPath, "photos")).Select(path => Path.GetFileName(path)).ToArray();
+            string folderPath = HostingEnvironment.MapPath(PhotoRoot);
+            string[] photos = Directory.EnumerateFiles(folderPath).ToArray();
             List<Photo> photoCollection = new List<Photo>();
-
             var encodedTitle = new byte[] { };
             var encodedCaption = new byte[] { };
 
             foreach (var photo in photos)
             {
-                Image image = Image.FromFile(folderPath + "photos\\" + photo);
-                PropertyItem title = image.PropertyItems.Where(p => p.Id == 40091).FirstOrDefault();
-                PropertyItem caption = image.PropertyItems.Where(p => p.Id == 40092).FirstOrDefault();
+                if (IsValidExtension(photo))
+                {
+                    Image image = Image.FromFile(photo);
+                    PropertyItem title = image.PropertyItems.Where(p => p.Id == 40091).FirstOrDefault();
+                    PropertyItem caption = image.PropertyItems.Where(p => p.Id == 40092).FirstOrDefault();
 
-                if (title != null) encodedTitle = title.Value;
-                else encodedTitle = new byte[] { };
-                if (caption != null) encodedCaption = caption.Value;
-                else encodedCaption = new byte[] { };
-                photoCollection.Add(new Photo() { Title = DecodeExif(encodedTitle), Caption = DecodeExif(encodedCaption), FilePath = "/Content/photos/" + photo });
-                image.Dispose();
+                    if (title != null) encodedTitle = title.Value;
+                    else encodedTitle = new byte[] { };
+                    if (caption != null) encodedCaption = caption.Value;
+                    else encodedCaption = new byte[] { };
+
+                    photoCollection.Add(new Photo()
+                    {
+                        Title = DecodeExif(encodedTitle),
+                        Caption = DecodeExif(encodedCaption),
+                        FilePath = PhotoRoot + Path.GetFileName(photo)
+                    });
+
+                    image.Dispose();
+                }
             }
 
             ReloadInterval = (photoCollection.Count() * 13000);
             Photos = photoCollection;
+        }
+
+        private bool IsValidExtension(string filePath)
+        {
+            if (ValidExtensions.Contains(Path.GetExtension(filePath))) return true;
+            return false;
         }
 
         private string DecodeExif(byte[] encodedData)
